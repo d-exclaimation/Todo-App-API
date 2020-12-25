@@ -8,7 +8,7 @@ Simple React Todo List by pulling list from API
 > Used Material UI Components
 
 ```tsx
-import {Button, Checkbox, TextField, List, ListItem, ListItemText, ListItemIcon} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 
 class App extends React.Component {
     render(): JSX.Element {
