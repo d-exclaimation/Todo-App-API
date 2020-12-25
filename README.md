@@ -9,7 +9,12 @@ Simple React Todo List by pulling list from API
 
 ```tsx
 import {Button, Checkbox, TextField, List, ListItem, ListItemText, ListItemIcon} from '@material-ui/core';
-<Button color="secondary">Post API</Button>
+
+class App extends React.Component {
+    render(): JSX.Element {
+        return <Button color="secondary">Post API</Button>
+    }
+}
 ```
 
 ## ASP.NET Core
