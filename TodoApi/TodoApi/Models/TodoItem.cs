@@ -1,6 +1,9 @@
 //
-// Todo Item Model
-// Authored By Vincent
+//  Todo Item Model
+//  Authored By Vincent
+//
+//  The MIT License (MIT)
+//  Copyright © 2020 d-exclaimation
 //
 
 using System;

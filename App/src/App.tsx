@@ -1,3 +1,11 @@
+//
+//  App.tsx
+//  React App
+//
+//  The MIT License (MIT)
+//  Copyright © 2020 d-exclaimation
+//
+
 import React, {ChangeEvent} from 'react';
 import {Button, Checkbox, TextField, List, ListItem, ListItemText, ListItemIcon} from '@material-ui/core';
 import FormGroup from '@material-ui/core/FormGroup';

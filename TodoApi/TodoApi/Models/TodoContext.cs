@@ -1,6 +1,9 @@
 //
-// Todo Data Context
-// Authored By Vincent
+//  Todo Data Context
+//  Authored By Vincent
+//
+//  The MIT License (MIT)
+//  Copyright © 2020 d-exclaimation
 //
 
 using Microsoft.EntityFrameworkCore;

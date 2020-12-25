@@ -1,6 +1,9 @@
 //
-// Todo API Controller
-// Authored By Vincent
+//  Todo API Controller
+//  Authored By Vincent
+//
+//  The MIT License (MIT)
+//  Copyright © 2020 d-exclaimation
 //
 
 using System;

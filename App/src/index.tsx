@@ -1,3 +1,11 @@
+//
+//  index.tsx
+//  React App Entry
+//
+//  The MIT License (MIT)
+//  Copyright © 2020 d-exclaimation
+//
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
