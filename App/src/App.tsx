@@ -6,8 +6,8 @@
 //  Copyright © 2020 d-exclaimation
 //
 
-import React, {ChangeEvent} from 'react';
-import {Button, Checkbox, TextField, List, ListItem, ListItemText, ListItemIcon} from '@material-ui/core';
+import React from 'react';
+import { Button, Checkbox, TextField, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import axios from 'axios';
@@ -28,11 +28,15 @@ class App extends React.Component {
         return this.state.textBox;
     }
 
+    componentDidMount(): void {
+        this.getJSON();
+    }
+
     render(): JSX.Element {
         return (
           <div className="App">
               <header className="App-header">
-                  <List component="nav" aria-label="main mailbox folders">
+                  <List className="App-Form" component="nav" aria-label="main mailbox folders">
                       { this.state.todos.map((data: TodoItems) => (
                           <ListItem key={data.id}>
                               <ListItemIcon>
@@ -47,16 +51,24 @@ class App extends React.Component {
                           </ListItem>
                       )) }
                   </List>
-                  <Button variant="outlined" color="primary" onClick={() => {this.getJSON()}}>Get API</Button>
-                  <br />
-                  <FormGroup className="App-Form">
+                  <FormGroup>
                       <TextField
                           id="outlined-basic"
                           label="Name of new task"
                           onChange={(event) => this.setTextBox(event)}
+                          InputLabelProps={{
+                              style: {
+                                  color: "lightgray"
+                              }
+                          }}
+                          InputProps={{
+                              style: {
+                                  color: "lightgray"
+                              }
+                          }}
                           variant="outlined"
                       />
-                      <FormControlLabel
+                      <FormControlLabel className="App-Label"
                           control={
                               <Checkbox
                                   checked={this.state.isChecked}
@@ -68,17 +80,21 @@ class App extends React.Component {
                           label="Completed"
                       />
                   </FormGroup>
-                  <Button color="secondary" onClick={() => {this.postJSON(this.state.textBox, this.state.isChecked)}}>Post API</Button>
+                  <div>
+                      <Button variant="outlined" color="secondary" onClick={() => {this.postJSON(this.state.textBox, this.state.isChecked)}}>Post API</Button>
+                      <span>  </span>
+                      <Button variant="outlined" color="primary" onClick={() => {this.getJSON()}}>Get API</Button>
+                  </div>
               </header>
           </div>
         );
     }
 
-    setCheck(event: ChangeEvent<HTMLInputElement>): void {
+    setCheck(event: React.ChangeEvent<HTMLInputElement>): void {
         this.setState({ isChecked: event.target.checked });
     }
 
-    setTextBox(event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void {
+    setTextBox(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void {
         const result: string = event.target.value;
         this.setState({ textBox: result });
     }

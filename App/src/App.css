@@ -25,7 +25,12 @@
 }
 
 .App-Form {
-  color: white;
+  background-color: #282c34;
+  color: lightgray;
+}
+
+.App-Label {
+  color: lightgray;
 }
 
 .App-link {
