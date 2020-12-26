@@ -7,9 +7,10 @@
 //
 
 import React from 'react';
-import { Button, Checkbox, TextField, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
+import { Button, Checkbox, TextField, List, Card, CardContent } from '@material-ui/core';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Task from "./view components/Task";
 import axios from 'axios';
 import './App.css';
 
@@ -36,58 +37,64 @@ class App extends React.Component {
         return (
           <div className="App">
               <header className="App-header">
-                  <List className="App-Form" component="nav" aria-label="main mailbox folders">
-                      { this.state.todos.map((data: TodoItems) => (
-                          <ListItem key={data.id}>
-                              <ListItemIcon>
-                                  <Checkbox
-                                      disabled
-                                      checked={data.isCompleted}
-                                      color="primary"
-                                      inputProps={{ 'aria-label': 'secondary checkbox' }}
-                                  />
-                              </ListItemIcon>
-                              <ListItemText primary={data.name} />
-                          </ListItem>
-                      )) }
-                  </List>
-                  <FormGroup>
-                      <TextField
-                          id="outlined-basic"
-                          label="Name of new task"
-                          onChange={(event) => this.setTextBox(event)}
-                          InputLabelProps={{
-                              style: {
-                                  color: "lightgray"
-                              }
-                          }}
-                          InputProps={{
-                              style: {
-                                  color: "lightgray"
-                              }
-                          }}
-                          variant="outlined"
-                      />
-                      <FormControlLabel className="App-Label"
-                          control={
-                              <Checkbox
-                                  checked={this.state.isChecked}
-                                  onChange={(event) => this.setCheck(event)}
-                                  color="primary"
-                                  inputProps={{ 'aria-label': 'primary checkbox' }}
-                              />
-                          }
-                          label="Completed"
-                      />
-                  </FormGroup>
                   <div>
-                      <Button variant="outlined" color="secondary" onClick={() => {this.postJSON(this.state.textBox, this.state.isChecked)}}>Post API</Button>
-                      <span>  </span>
-                      <Button variant="outlined" color="primary" onClick={() => {this.getJSON()}}>Get API</Button>
+                      {this.formCard()}
+                      <Card style={{
+                          minWidth: 275,
+                          backgroundColor: "#282c34",
+                          margin: 20,
+                      }} variant="outlined">
+                          <CardContent>
+                              <List className="App-Form" component="nav" aria-label="main mailbox folders">
+                                  { this.state.todos.map((data: TodoItems) => (
+                                      <Task key={data.id} id={data.id} name={data.name} createdAt={data.createdAt} dueDate={data.dueDate} isCompleted={data.isCompleted}/>
+                                  )) }
+                              </List>
+                          </CardContent>
+                      </Card>
                   </div>
               </header>
           </div>
         );
+    }
+
+    formCard(): JSX.Element {
+        return (
+            <Card style={{
+                minWidth: 275,
+                backgroundColor: "#282c34",
+                margin: 20,
+            }} variant="outlined">
+                <CardContent>
+                    <FormGroup>
+                        <TextField
+                            id="outlined-basic"
+                            label="Name of new task"
+                            onChange={(event) => this.setTextBox(event)}
+                            InputLabelProps={{ style: { color: "lightgray" } }}
+                            InputProps={{ style: { color: "lightgray" } }}
+                            variant="outlined"
+                        />
+                        <FormControlLabel
+                            className="App-Label" control={
+                            <Checkbox
+                                checked={this.state.isChecked}
+                                onChange={(event) => this.setCheck(event)}
+                                color="primary"
+                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />
+                        }
+                            label="Completed"
+                        />
+                    </FormGroup>
+                    <Button
+                        onClick={() => {
+                            this.postJSON(this.state.textBox, this.state.isChecked)
+                        }}
+                        style={{margin: 20}} variant="outlined" color="secondary">Post API</Button>
+                </CardContent>
+            </Card>
+        )
     }
 
     setCheck(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -127,7 +134,7 @@ class App extends React.Component {
     }
 }
 
-interface TodoItems {
+export interface TodoItems {
     id: number,
     name: string,
     createdAt: Date,
