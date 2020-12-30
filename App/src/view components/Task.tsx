@@ -7,9 +7,14 @@
 //
 
 import React from 'react';
-import { TodoItems } from "../App";
-import {Checkbox, ListItem, ListItemText, ListItemIcon} from '@material-ui/core';
+import { TodoItems } from '../App';
+import { Checkbox, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import '../App.css';
+
+const getDateOnly = (date: Date): string => {
+    const actualDate = new Date(date.toString());
+    return actualDate.toDateString();
+};
 
 const Task = (props: TodoItems) => {
     return (
@@ -24,16 +29,11 @@ const Task = (props: TodoItems) => {
             </ListItemIcon>
             <ListItemText
                 primary={props.name}
-                secondary={getDateOnly(props.createdAt)}
-                secondaryTypographyProps={{style: { color: "lightgray"}}}
+                secondary={ getDateOnly(props.createdAt) }
+                secondaryTypographyProps={{ style: { color: 'lightgray' } }}
             />
         </ListItem>
-    )
-}
-
-const getDateOnly = (date: Date): string => {
-    const actualDate = new Date(date.toString());
-    return actualDate.toDateString();
-}
+    );
+};
 
 export default Task;
